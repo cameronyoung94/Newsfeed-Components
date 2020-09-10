@@ -93,6 +93,9 @@ const data = [
   // Step 1: Write a component called 'articleMaker' to create an article.
   // Your component is a function that takes an article object as its only argument,
   // and returns a DOM node looking like the one below:
+  // const articlesDiv = document.querySelector(".articles");
+  // const article = { title: "Some String", date: "12/07/95", firstParagraph: "", secondParagraph: "", thirdParagraph: ""};
+
   function articleMaker (object) {
     const articleDiv = document.createElement('div')
     const articleH2 = document.createElement('h2')
@@ -120,11 +123,17 @@ const data = [
     articleP3.textContent = object.thirdParagraph
     articleSpan.textContent = "+"
 
+    articleSpan.addEventListener("click", () => {
+      articleDiv.classList.toggle("article-open");
+    })
+    
 
     return articleDiv
   }
 
-  
+  data.map(item => {
+    document.querySelector(".articles").appendChild(articleMaker(item))
+  })
   
   // <div class="article">
   //   <h2>{title of the article}</h2>
